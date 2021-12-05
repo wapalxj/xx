@@ -1,2 +1,6 @@
 include ':app'
 rootProject.name = "xx"
+include ':c3_ui_3_skin'
+include ':skinlib'
+include ':skinres'
+include ':opensrc_glide'
