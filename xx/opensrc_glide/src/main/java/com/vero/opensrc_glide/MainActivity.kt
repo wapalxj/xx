@@ -14,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun jump(view: View) {
+
+        
+
         startActivity(Intent(this,TestGlideMainActivity::class.java))
     }
 }
