@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Operator2Activity">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="distinct"
+            android:textAllCaps="false"
+            android:text="distinct" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="filter"
+            android:textAllCaps="false"
+            android:text="filter" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="buffer"
+            android:textAllCaps="false"
+            android:text="buffer" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="timer"
+            android:textAllCaps="false"
+            android:text="timer" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="interval"
+            android:textAllCaps="false"
+            android:text="interval" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doOnNext"
+            android:textAllCaps="false"
+            android:text="doOnNext" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="skip"
+            android:textAllCaps="false"
+            android:text="skip" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="take"
+            android:textAllCaps="false"
+            android:text="take" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="single"
+            android:textAllCaps="false"
+            android:text="single" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="debounce"
+            android:textAllCaps="false"
+            android:text="debounce" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="defer"
+            android:textAllCaps="false"
+            android:text="defer" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="last"
+            android:textAllCaps="false"
+            android:text="last" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="merge"
+            android:textAllCaps="false"
+            android:text="merge" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="reduce"
+            android:textAllCaps="false"
+            android:text="reduce" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="scan"
+            android:textAllCaps="false"
+            android:text="scan" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="window"
+            android:textAllCaps="false"
+            android:text="window" />
+    </LinearLayout>
+
+</ScrollView>

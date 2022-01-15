@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Xx"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".TestGlideMainActivity"
+            android:name=".gtlide.TestGlideMainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -26,6 +26,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".rxjava.TestRxjavaMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".rxjava.Operator2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".rxjava.NetworkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".rxjava.PollingActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

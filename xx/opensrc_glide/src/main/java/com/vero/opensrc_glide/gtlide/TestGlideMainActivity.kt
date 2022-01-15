@@ -1,19 +1,20 @@
-package com.vero.opensrc_glide
+package com.vero.opensrc_glide.gtlide
 
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.target.ViewTarget
+import com.vero.opensrc_glide.R
 
 class TestGlideMainActivity : AppCompatActivity() {
 
@@ -68,10 +69,34 @@ class TestGlideMainActivity : AppCompatActivity() {
         val requestManager: RequestManager = Glide.with(this)
 
         //load
-        val requestBuilder: RequestBuilder<Drawable> = requestManager.load(url)
+        val requestBuilder: RequestBuilder<Drawable> = requestManager
+            .load(url)
+            .listener(object :RequestListener<Drawable>{
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+            })
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
 
         //into
-        val viewTarget :ViewTarget<ImageView,Drawable> = requestBuilder.into(imageView)
+        val viewTarget: ViewTarget<ImageView, Drawable> = requestBuilder.into(imageView)
 
 
     }

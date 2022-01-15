@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import com.bumptech.glide.Glide
+import com.vero.opensrc_glide.gtlide.TestGlideMainActivity
+import com.vero.opensrc_glide.rxjava.TestRxjavaMainActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,10 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun jump(view: View) {
+    fun jump2Glide(view: View) {
+        startActivity(Intent(this, TestGlideMainActivity::class.java))
+    }
 
-        
-
-        startActivity(Intent(this,TestGlideMainActivity::class.java))
+    fun jump2Rxjava(view: View) {
+        startActivity(Intent(this,TestRxjavaMainActivity::class.java))
     }
 }

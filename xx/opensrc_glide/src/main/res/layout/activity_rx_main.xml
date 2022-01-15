@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rxjava"
+        android:textAllCaps="false"
+        android:text="rxjava" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rxjavaChain"
+        android:textAllCaps="false"
+        android:text="rxjavaChain" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="map"
+        android:textAllCaps="false"
+        android:text="map" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="zip"
+        android:textAllCaps="false"
+        android:text="zip"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="concat"
+        android:textAllCaps="false"
+        android:text="concat"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="flatmap"
+        android:textAllCaps="false"
+        android:text="flatmap"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="throttleFirst"
+        android:textAllCaps="false"
+        android:text="throttleFirst"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="concatMap"
+        android:textAllCaps="false"
+        android:text="concatMap"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="moreOperator"
+        android:textAllCaps="false"
+        android:text="更多操作符"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="network"
+        android:textAllCaps="false"
+        android:text="网络请求"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="polling"
+        android:textAllCaps="false"
+        android:text="轮询"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="flowable"
+        android:textAllCaps="false"
+        android:text="背压"/>
+
+</LinearLayout>

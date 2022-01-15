@@ -3,9 +3,6 @@ package com.vero.xx
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.TextView
-import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         Log.e("ClassLoader000 ","classLoader ====$path")
         Log.e("ClassLoader000 ","appLoader ====$appLoader")
 
-        Glide.with(this)
+//        Glide.with(this)
 
 
     }
