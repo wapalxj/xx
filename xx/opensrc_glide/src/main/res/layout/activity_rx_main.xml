@@ -76,6 +76,12 @@
         android:onClick="polling"
         android:textAllCaps="false"
         android:text="轮询"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testViewClick"
+        android:textAllCaps="false"
+        android:text="防抖"/>
 
     <Button
         android:layout_width="wrap_content"

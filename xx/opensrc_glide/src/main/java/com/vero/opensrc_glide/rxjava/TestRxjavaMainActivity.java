@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.vero.opensrc_glide.R;
+import com.vero.opensrc_glide.rxjava.custome.RxView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ import io.reactivex.rxjava3.functions.BiFunction;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.internal.operators.observable.ObservableJust;
+import io.reactivex.rxjava3.internal.schedulers.TrampolineScheduler;
 import io.reactivex.rxjava3.plugins.RxJavaPlugins;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -44,8 +46,8 @@ public class TestRxjavaMainActivity extends AppCompatActivity {
         return new ObservableTransformer<UD, UD>() {
             @Override
             public @NonNull ObservableSource<UD> apply(@NonNull Observable<UD> upstream) {
-                return upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
+                return upstream.subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(TrampolineScheduler.instance());
             }
         };
     }
@@ -454,7 +456,6 @@ public class TestRxjavaMainActivity extends AppCompatActivity {
 
         })
                 .subscribeOn(Schedulers.io())
-                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
@@ -464,6 +465,23 @@ public class TestRxjavaMainActivity extends AppCompatActivity {
                 });
 
     }
+
+    /**
+     * 自定义操作符，防抖
+     */
+    public void testViewClick(View view) {
+        //创建被观察者
+        RxView.clicks(view)
+                .throttleFirst(2,TimeUnit.SECONDS)
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Throwable {
+                        Log.e(TAG, "testViewClick=======  ");
+                    }
+                });
+
+    }
+
 
     public void moreOperator(View view) {
         Intent intent = new Intent(this, Operator2Activity.class);
