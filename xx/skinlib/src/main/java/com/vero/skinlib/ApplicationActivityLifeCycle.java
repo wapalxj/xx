@@ -42,7 +42,7 @@ public class ApplicationActivityLifeCycle implements Application.ActivityLifecyc
         //api 30  失败
         forceSetFactory2(layoutInflater,skinLayoutInflateFactory,activity);
 
-        //api--------------
+        //api--------------   android P mFactorySet为非SDK API
 //        try {
 ////            LayoutInflater使用mFactorySet标记是否设置过Factory
 ////            如果设置过，则再次设置会抛出异常

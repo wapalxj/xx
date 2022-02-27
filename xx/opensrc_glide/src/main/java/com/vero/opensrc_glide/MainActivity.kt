@@ -3,6 +3,7 @@ package com.vero.opensrc_glide
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import com.vero.opensrc_glide.gtlide.TestGlideMainActivity
 import com.vero.opensrc_glide.rxjava.TestRxjavaMainActivity
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun jump2Rxjava(view: View) {
+        val l= listOf<String>()
         startActivity(Intent(this,TestRxjavaMainActivity::class.java))
     }
 }

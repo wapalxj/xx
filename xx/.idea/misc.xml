@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/.gradle/caches/transforms-2/files-2.1/03d769ab313d0e5dc6355557245a1e3b/appcompat-1.2.0/res/layout/abc_screen_content_include.xml" value="0.35260416666666666" />
+        <entry key="..\:/Android/.gradle/caches/transforms-2/files-2.1/03d769ab313d0e5dc6355557245a1e3b/appcompat-1.2.0/res/layout/abc_screen_simple.xml" value="0.35260416666666666" />
+        <entry key="..\:/Android/sdk/platforms/android-30/data/res/layout/screen_simple.xml" value="0.2388888888888889" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/app/src/main/res/layout/activity_main.xml" value="0.3314814814814815" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c3_ui_3_skin/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/opensrc_glide/src/main/res/layout/activity_main.xml" value="0.3380208333333333" />
