@@ -78,23 +78,29 @@ public class FlowLayout extends ViewGroup {
             if (childView.getVisibility() == View.GONE) {
                 continue;
             }
-            LayoutParams childLp = childView.getLayoutParams();
+//            LayoutParams childLp = childView.getLayoutParams();
+//
+//            //将LayoutParams转变成measureSpec
+//            int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
+//                    paddingLeft + paddingRight, childLp.width);
+//
+//            int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
+//                    paddingTop + paddingBottom, childLp.height);
+//
+//            childView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            //将LayoutParams转变成measureSpec
-            int childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
-                    paddingLeft + paddingRight, childLp.width);
+            measureChildWithMargins(childView,widthMeasureSpec,0,heightMeasureSpec,0);
+            MarginLayoutParams childLp = (MarginLayoutParams) childView.getLayoutParams();
 
-            int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
-                    paddingTop + paddingBottom, childLp.height);
-
-            childView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            int childMarginLeftFight=childLp.leftMargin+childLp.rightMargin;
+            //还需要处理Top/bottomMargin...
 
             //获取子view宽高
             int childMeasuredWidth = childView.getMeasuredWidth();
             int childMeasuredHeight = childView.getMeasuredHeight();
 
             //如果需要换行
-            if (childMeasuredWidth + lineWidthUsed + mHorizontalSpacing > selfWidth) {
+            if (childMeasuredWidth + lineWidthUsed + mHorizontalSpacing +paddingLeft+paddingRight +childMarginLeftFight> selfWidth) {
                 //一旦换行,我们就可以判断当前行需要的宽和高了，所以此时要记录下来
                 allLines.add(lineViews);
                 lineHeights.add(lineHeight);
@@ -113,7 +119,7 @@ public class FlowLayout extends ViewGroup {
             //view是分行layout的,要记录每一行的view
             lineViews.add(childView);
             //每一行的宽高
-            lineWidthUsed = lineWidthUsed + childMeasuredWidth + mHorizontalSpacing;
+            lineWidthUsed = lineWidthUsed + childMeasuredWidth + mHorizontalSpacing +childMarginLeftFight;
             lineHeight = Math.max(lineHeight, childMeasuredHeight);
 
             //处理最后一行
@@ -129,6 +135,8 @@ public class FlowLayout extends ViewGroup {
         //根据子view的度量结果+自己的mode，来重新度量viewGroup自己
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        parentNeededWidth+=(paddingLeft+paddingRight);
 
         int realWidth = (widthMode == MeasureSpec.EXACTLY) ? selfWidth : parentNeededWidth;
         int realHeight = (heightMode == MeasureSpec.EXACTLY) ? selfHeight : parentNeededHeight;
@@ -147,12 +155,14 @@ public class FlowLayout extends ViewGroup {
             int lineHeight = lineHeights.get(i);
             for (int j = 0; j < lineViews.size(); j++) {
                 View view = lineViews.get(j);
-                int left = curL;
-                int top = curT;
+                MarginLayoutParams childLp = (MarginLayoutParams) view.getLayoutParams();
+
+                int left = curL+childLp.leftMargin;
+                int top = curT+childLp.topMargin;;
                 int right = left + view.getMeasuredWidth();
                 int bottom = top + view.getMeasuredHeight();
                 view.layout(left, top, right, bottom);
-                curL = right + mHorizontalSpacing;
+                curL = right + mHorizontalSpacing+childLp.leftMargin;
             }
             //下一行
             curL = getPaddingLeft();
@@ -160,6 +170,32 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
+
+    /**
+     * 子view要设置margin 必须重写
+     *
+     * xml 解析过程中会调用这个
+     *
+     *
+     * @param attrs
+     * @return
+     */
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(),attrs);
+    }
+
+    /**
+     * xml 解析过程中不会调用这个
+     * @param p
+     * @return
+     */
+
+    @Override
+    protected LayoutParams generateLayoutParams(LayoutParams p) {
+        return super.generateLayoutParams(p);
+    }
 
     private int dp2px(int dp) {
         DisplayMetrics dm = new DisplayMetrics();
