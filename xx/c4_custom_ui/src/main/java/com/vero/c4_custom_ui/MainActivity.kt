@@ -17,36 +17,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // 从左到右
-    fun left_to_right(view: View) {
-        val colorTrackTextView = findViewById<ColorTrackTextView>(R.id.tv_color)
 
-        colorTrackTextView.direction = ColorTrackTextView.Direction.LEFT_TO_RIGHT
-
-        ValueAnimator.ofFloat(0f, 1f).apply {
-            addUpdateListener {
-                colorTrackTextView.currentProgress = it.animatedFraction
-            }
-            duration = 1500
-            start()
-        }
-    }
-
-    // 从右到左
-    fun right_to_left(view: View) {
-        val colorTrackTextView = findViewById<ColorTrackTextView>(R.id.tv_color)
-        colorTrackTextView.direction = ColorTrackTextView.Direction.RIGHT_TO_LEFT
-        ValueAnimator.ofFloat(0f, 1f).apply {
-            addUpdateListener {
-                colorTrackTextView.currentProgress = it.animatedFraction
-            }
-            duration = 1500
-            start()
-        }
+    fun photoViewActivityActivity(view: View) {
+        val intent=Intent(this,PhotoViewActivity::class.java)
+        startActivity(intent)
     }
 
     fun dispatchActivity(view: View) {
         val intent=Intent(this,DispatchActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun colorTrackActivity(view: View) {
+        val intent=Intent(this,ColorTrackActivity::class.java)
         startActivity(intent)
     }
 }
