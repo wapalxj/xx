@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
         setContentView(R.layout.test_flowlayout)
-
         //BootClassLoader
         val stringLoader=String::class.java.classLoader
 

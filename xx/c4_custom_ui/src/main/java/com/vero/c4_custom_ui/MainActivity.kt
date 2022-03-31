@@ -13,7 +13,6 @@ import com.vero.c4_custom_ui.view.ColorTrackTextView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
 
     }
