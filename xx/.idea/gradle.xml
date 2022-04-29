@@ -12,11 +12,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/c3_ui_3_skin" />
             <option value="$PROJECT_DIR$/c4_custom_ui" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/libwebview" />
             <option value="$PROJECT_DIR$/opensrc_glide" />
             <option value="$PROJECT_DIR$/skinlib" />
             <option value="$PROJECT_DIR$/skinres" />
+            <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
