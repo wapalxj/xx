@@ -8,6 +8,10 @@
         <entry key="..\:/Android/sdk/platforms/android-30/data/res/layout/screen_simple.xml" value="0.2388888888888889" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/app/src/main/res/layout/activity_main.xml" value="0.3314814814814815" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/app/src/main/res/layout/test_flowlayout.xml" value="0.35260416666666666" />
+        <entry key="..\:/workplace/code/GIT/imooc/xx/xx/base/src/main/res/layout/layout_loading.xml" value="0.35260416666666666" />
+        <entry key="..\:/workplace/code/GIT/imooc/xx/xx/base/src/main/res/layout/layout_lottie_empty.xml" value="0.19166666666666668" />
+        <entry key="..\:/workplace/code/GIT/imooc/xx/xx/base/src/main/res/layout/layout_lottie_loading.xml" value="0.21851851851851853" />
+        <entry key="..\:/workplace/code/GIT/imooc/xx/xx/base/src/main/res/layout/layout_placeholder.xml" value="0.13333333333333333" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c3_ui_3_skin/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c4_custom_ui/src/main/res/drawable/ic_launcher_background.xml" value="0.198" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c4_custom_ui/src/main/res/layout/activity_color_track.xml" value="0.35260416666666666" />
@@ -16,6 +20,7 @@
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c4_custom_ui/src/main/res/layout/activity_multi_view.xml" value="0.3489583333333333" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/c4_custom_ui/src/main/res/layout/activity_photo_view.xml" value="0.2578947368421053" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/libwebview/src/main/res/layout/activity_web_view.xml" value="0.33" />
+        <entry key="..\:/workplace/code/GIT/imooc/xx/xx/libwebview/src/main/res/layout/activity_webview.xml" value="0.35260416666666666" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/libwebview/src/main/res/layout/fragment_webview.xml" value="0.2175925925925926" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/opensrc_glide/src/main/res/layout/activity_main.xml" value="0.3380208333333333" />
         <entry key="..\:/workplace/code/GIT/imooc/xx/xx/opensrc_glide/src/main/res/layout/activity_network.xml" value="0.35260416666666666" />
