@@ -1,33 +1,39 @@
 package com.vero.libwebview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.kingja.loadsir.callback.Callback
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.vero.base.loadsir.ErrorCallback
 import com.vero.base.loadsir.LoadingCallback
 import com.vero.libwebview.databinding.FragmentWebviewBinding
 import com.vero.libwebview.utils.Constants
 import com.vero.libwebview.webviewclient.XXWebViewClient
-import java.util.*
 
-class WebViewFragment : Fragment(), WebViewCallBack {
+class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
 
     private var mUrl: String = ""
+    private var mCanNativeRefresh = true
+    private var mIsError = false
+
     private lateinit var mBinding: FragmentWebviewBinding
     private lateinit var mLoadService: LoadService<*>
 
     companion object {
-        fun newInstance(url: String): Fragment {
+        private const val TAG = "WebViewFragment"
+        fun newInstance(url: String, canNativeRefresh: Boolean = true): Fragment {
             val fragment = WebViewFragment()
             val bundle = Bundle().apply {
                 putString(Constants.URL, url)
+                putBoolean(Constants.CAN_NATIVE_REFRESH, canNativeRefresh)
             }
             fragment.arguments = bundle
 
@@ -38,6 +44,7 @@ class WebViewFragment : Fragment(), WebViewCallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mUrl = arguments?.getString(Constants.URL) ?: ""
+        mCanNativeRefresh = arguments?.getBoolean(Constants.CAN_NATIVE_REFRESH) ?: true
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -69,6 +76,11 @@ class WebViewFragment : Fragment(), WebViewCallBack {
 
         }
 
+        mBinding.smartRefresh.setRefreshHeader(ClassicsHeader(activity))
+        mBinding.smartRefresh.setOnRefreshListener(this)
+        mBinding.smartRefresh.setEnableLoadMore(false)
+        mBinding.smartRefresh.setEnableRefresh(mCanNativeRefresh)
+
 
 //        return mBinding.root
         return mLoadService.loadLayout
@@ -80,7 +92,29 @@ class WebViewFragment : Fragment(), WebViewCallBack {
     }
 
     override fun pageFinished(url: String?) {
-        mLoadService.showSuccess()
+        if (mIsError) {
+            // 错误 一定让刷新
+            mIsError = false
+            mLoadService.showCallback(ErrorCallback::class.java)
+            mBinding.smartRefresh.setEnableRefresh(true)
+        } else {
+            mLoadService.showSuccess()
+            mBinding.smartRefresh.setEnableRefresh(mCanNativeRefresh)
+        }
+        mBinding.smartRefresh.finishRefresh()
+        Log.e(TAG, "pageFinished()")
+    }
+
+    override fun pageError() {
+        // 注意 ：error后会继续调用pageFinished
+        Log.e(TAG, "pageError()")
+        mIsError = true
+        mBinding.smartRefresh.finishRefresh()
+    }
+
+    // 下拉刷新
+    override fun onRefresh(refreshLayout: RefreshLayout) {
+        mBinding.webview.reload()
     }
 
 

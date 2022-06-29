@@ -23,7 +23,7 @@ public class WebViewServiceImpl implements IWebViewService {
     }
 
     @Override
-    public Fragment getWebViewFragment(String url) {
-        return WebViewFragment.Companion.newInstance(url);
+    public Fragment getWebViewFragment(String url,boolean canNativeRefresh) {
+        return WebViewFragment.Companion.newInstance(url,canNativeRefresh);
     }
 }

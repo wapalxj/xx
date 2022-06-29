@@ -4,16 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <LinearLayout
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/smart_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/webview"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".WebViewActivity" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".WebViewActivity" />
+
+        </LinearLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </layout>

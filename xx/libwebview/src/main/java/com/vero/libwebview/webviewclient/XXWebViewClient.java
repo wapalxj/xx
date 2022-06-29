@@ -2,6 +2,8 @@ package com.vero.libwebview.webviewclient;
 
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -32,6 +34,16 @@ public class XXWebViewClient extends WebViewClient {
         super.onPageFinished(view, url);
         if (mWebViewCallBack != null) {
             mWebViewCallBack.pageFinished(url);
+        } else {
+            Log.e(TAG, "WebViewCallBack is null");
+        }
+    }
+
+    @Override
+    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+        super.onReceivedError(view, request, error);
+        if (mWebViewCallBack != null) {
+            mWebViewCallBack.pageError();
         } else {
             Log.e(TAG, "WebViewCallBack is null");
         }
