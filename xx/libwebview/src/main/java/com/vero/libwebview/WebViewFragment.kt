@@ -51,7 +51,7 @@ class WebViewFragment : Fragment(), WebViewCallBack {
 
         mBinding.webview.loadUrl(mUrl)
 
-        mLoadService = LoadSir.getDefault().register(mBinding.webview, object : Callback.OnReloadListener {
+        mLoadService = LoadSir.getDefault().register(mBinding.root, object : Callback.OnReloadListener {
             override fun onReload(v: View?) {
                 // 重新加载
                 mLoadService.showCallback(LoadingCallback::class.java)
