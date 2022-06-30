@@ -60,4 +60,8 @@ class WebViewActivity : AppCompatActivity() {
 //
 //        mBinding.webview.loadUrl(url)
     }
+
+    fun updateTitle(title: String) {
+        mBinding.title.text = title
+    }
 }

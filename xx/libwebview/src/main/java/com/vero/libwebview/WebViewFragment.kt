@@ -16,6 +16,7 @@ import com.vero.base.loadsir.ErrorCallback
 import com.vero.base.loadsir.LoadingCallback
 import com.vero.libwebview.databinding.FragmentWebviewBinding
 import com.vero.libwebview.utils.Constants
+import com.vero.libwebview.webchromeclient.XXWebChromeClient
 import com.vero.libwebview.webviewclient.XXWebViewClient
 
 class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
@@ -76,6 +77,9 @@ class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
 
         }
 
+        mBinding.webview.webChromeClient = XXWebChromeClient(this)
+
+
         mBinding.smartRefresh.setRefreshHeader(ClassicsHeader(activity))
         mBinding.smartRefresh.setOnRefreshListener(this)
         mBinding.smartRefresh.setEnableLoadMore(false)
@@ -110,6 +114,10 @@ class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
         Log.e(TAG, "pageError()")
         mIsError = true
         mBinding.smartRefresh.finishRefresh()
+    }
+
+    override fun updateTitle(title: String) {
+        (activity as? WebViewActivity)?.updateTitle(title)
     }
 
     // 下拉刷新

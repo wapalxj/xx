@@ -6,4 +6,6 @@ public interface WebViewCallBack {
     void pageFinished(String url);
 
     void pageError();
+
+    void updateTitle(String title);
 }
