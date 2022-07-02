@@ -26,8 +26,19 @@ class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
     private var mCanNativeRefresh = true
     private var mIsError = false
 
-    private lateinit var mBinding: FragmentWebviewBinding
-    private lateinit var mLoadService: LoadService<*>
+    private val mBinding: FragmentWebviewBinding by lazy {
+        FragmentWebviewBinding.inflate(layoutInflater,activity?.window?.decorView as ViewGroup,false)
+    }
+
+    private val mLoadService: LoadService<*> by lazy {
+        LoadSir.getDefault().register(mBinding.root, object : Callback.OnReloadListener {
+            override fun onReload(v: View?) {
+                // 重新加载
+                mLoadService.showCallback(LoadingCallback::class.java)
+                mBinding.webview.reload()
+            }
+        })
+    }
 
     companion object {
         private const val TAG = "WebViewFragment"
@@ -50,19 +61,10 @@ class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentWebviewBinding.inflate(layoutInflater, container, false)
 
         WebViewDefaultSettings.getInstance().setSettings(mBinding.webview)
 
         mBinding.webview.loadUrl(mUrl)
-
-        mLoadService = LoadSir.getDefault().register(mBinding.root, object : Callback.OnReloadListener {
-            override fun onReload(v: View?) {
-                // 重新加载
-                mLoadService.showCallback(LoadingCallback::class.java)
-                mBinding.webview.reload()
-            }
-        })
 
         mBinding.webview.webViewClient = object : XXWebViewClient(this) {
 
