@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 //            val iWebViewService = ServiceLoader.load(IWebViewService::class.java).iterator().next()
             val iWebViewService = VeroServiceLoader.load(IWebViewService::class.java)
             if (iWebViewService != null) {
-                iWebViewService.startWebViewActivity(this, "http://www.baidu.com", "百度",true)
+//                iWebViewService.startWebViewActivity(this, "http://www.baidu.com", "百度",true)
+                iWebViewService.startDemoHtml(this)
             }
 
 

@@ -9,10 +9,13 @@ import com.vero.libwebview.utils.Constants;
 
 import androidx.fragment.app.Fragment;
 
+import static com.vero.libwebview.utils.Constants.ANDROID_ASSETS_URI;
+
 @AutoService(IWebViewService.class)
 public class WebViewServiceImpl implements IWebViewService {
+
     @Override
-    public void startWebViewActivity(Context context, String url, String title,boolean isShowActionBar) {
+    public void startWebViewActivity(Context context, String url, String title, boolean isShowActionBar) {
         if (context != null) {
             Intent intent = new Intent(context, WebViewActivity.class);
             intent.putExtra(Constants.TITLE, title);
@@ -23,7 +26,17 @@ public class WebViewServiceImpl implements IWebViewService {
     }
 
     @Override
-    public Fragment getWebViewFragment(String url,boolean canNativeRefresh) {
-        return WebViewFragment.Companion.newInstance(url,canNativeRefresh);
+    public Fragment getWebViewFragment(String url, boolean canNativeRefresh) {
+        return WebViewFragment.Companion.newInstance(url, canNativeRefresh);
+    }
+
+    @Override
+    public void startDemoHtml(Context context) {
+        if (context != null) {
+            Intent intent = new Intent(context, WebViewActivity.class);
+            intent.putExtra(Constants.TITLE, "本地测试demo");
+            intent.putExtra(Constants.URL, ANDROID_ASSETS_URI + "demo.html");
+            context.startActivity(intent);
+        }
     }
 }

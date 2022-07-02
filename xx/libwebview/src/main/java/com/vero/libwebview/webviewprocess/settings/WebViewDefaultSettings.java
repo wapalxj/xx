@@ -1,4 +1,4 @@
-package com.vero.libwebview.settings;
+package com.vero.libwebview.webviewprocess.settings;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

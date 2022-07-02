@@ -1,4 +1,4 @@
-package com.vero.libwebview.webviewclient;
+package com.vero.libwebview.webviewprocess.webviewclient;
 
 import android.graphics.Bitmap;
 import android.util.Log;

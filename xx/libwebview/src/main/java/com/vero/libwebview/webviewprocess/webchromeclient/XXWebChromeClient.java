@@ -1,6 +1,7 @@
-package com.vero.libwebview.webchromeclient;
+package com.vero.libwebview.webviewprocess.webchromeclient;
 
 import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
@@ -25,5 +26,12 @@ public class XXWebChromeClient  extends WebChromeClient {
         } else {
             Log.e(TAG, "WebViewCallBack is null");
         }
+    }
+
+    // 调试 Js 的日志
+    @Override
+    public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+        Log.e(TAG, "onConsoleMessage ==="+consoleMessage.message());
+        return super.onConsoleMessage(consoleMessage);
     }
 }
