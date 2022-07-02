@@ -15,6 +15,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.vero.base.loadsir.ErrorCallback
 import com.vero.base.loadsir.LoadingCallback
 import com.vero.libwebview.databinding.FragmentWebviewBinding
+import com.vero.libwebview.settings.WebViewDefaultSettings
 import com.vero.libwebview.utils.Constants
 import com.vero.libwebview.webchromeclient.XXWebChromeClient
 import com.vero.libwebview.webviewclient.XXWebViewClient
@@ -51,11 +52,7 @@ class WebViewFragment : Fragment(), WebViewCallBack, OnRefreshListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentWebviewBinding.inflate(layoutInflater, container, false)
 
-        mBinding.webview.settings.javaScriptEnabled = true
-        //开启DOM
-        mBinding.webview.settings.domStorageEnabled = true
-
-
+        WebViewDefaultSettings.getInstance().setSettings(mBinding.webview)
 
         mBinding.webview.loadUrl(mUrl)
 
