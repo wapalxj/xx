@@ -67,9 +67,27 @@ public class BaseWebView extends WebView {
             final JsParam jsParamObj = new Gson().fromJson(jsParams, JsParam.class);
             if (jsParamObj != null) {
                 String json = new Gson().toJson(jsParamObj.param);
-                WebviewProcessCommandDispatcher.getInstance().executeCommand(jsParamObj.name, json);
+                WebviewProcessCommandDispatcher.getInstance().executeCommand(jsParamObj.name, json, this);
             }
 
         }
+    }
+
+    // 回调webview方法
+    public void handleCallback(String callbackName, String response) {
+        if (!TextUtils.isEmpty(callbackName) && !TextUtils.isEmpty(response)) {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    //需要在主线程
+//                    String jscode = "javascript:xiangxuejs.callback('" + callbackName + "','" + response + "')";
+
+                    String jscode = "javascript:xiangxuejs.callback('" + callbackName + "'," + response + ")";
+                    Log.e(TAG,jscode);
+                    evaluateJavascript(jscode, null);
+                }
+            });
+        }
+
     }
 }

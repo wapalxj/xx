@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.google.auto.service.AutoService;
 import com.vero.base.BaseApplication;
+import com.vero.libwebview.ICallbackMainProcessToWebviewProcessAidlInterface;
 import com.vero.libwebview.command.Command;
 
 import java.util.Map;
@@ -18,7 +19,7 @@ public class CommandShowToast implements Command {
     }
 
     @Override
-    public void execute(Map params) {
+    public void execute(Map params, ICallbackMainProcessToWebviewProcessAidlInterface callback) {
         String value = String.valueOf(params.get("message"));
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override

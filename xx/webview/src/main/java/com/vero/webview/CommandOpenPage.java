@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import com.google.auto.service.AutoService;
 import com.vero.base.BaseApplication;
+import com.vero.libwebview.ICallbackMainProcessToWebviewProcessAidlInterface;
 import com.vero.libwebview.command.Command;
 
 import java.util.Map;
@@ -18,7 +19,7 @@ public class CommandOpenPage implements Command {
     }
 
     @Override
-    public void execute(Map params) {
+    public void execute(Map params, ICallbackMainProcessToWebviewProcessAidlInterface callback) {
         String targetClass = String.valueOf(params.get("target_class"));
         if (!TextUtils.isEmpty(targetClass)) {
             Intent intent = new Intent(targetClass);

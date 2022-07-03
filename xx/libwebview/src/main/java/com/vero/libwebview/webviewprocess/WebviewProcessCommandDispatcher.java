@@ -1,13 +1,16 @@
 package com.vero.libwebview.webviewprocess;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.vero.base.BaseApplication;
+import com.vero.libwebview.ICallbackMainProcessToWebviewProcessAidlInterface;
 import com.vero.libwebview.IWebviewProcessToMainProcessAidlInterface;
 import com.vero.libwebview.mainprocess.MainProcessCommandManager;
 import com.vero.libwebview.mainprocess.MainProcessCommandService;
@@ -59,11 +62,20 @@ public class WebviewProcessCommandDispatcher implements ServiceConnection {
         initAidlConnection();
     }
 
-    public void executeCommand(String commandName, String params) {
+    public void executeCommand(String commandName, String params, BaseWebView baseWebView) {
         if (mIWebviewProcessToMainProcessAidlInterface != null) {
             try {
                 // 调用服务端方法
-                mIWebviewProcessToMainProcessAidlInterface.handleWebCommand(commandName, params);
+                mIWebviewProcessToMainProcessAidlInterface.handleWebCommand(commandName, params,
+
+                        new ICallbackMainProcessToWebviewProcessAidlInterface.Stub() {
+                            @SuppressLint("LongLogTag")
+                            @Override
+                            public void onResult(String callbackName, String response) throws RemoteException {
+                                baseWebView.handleCallback(callbackName, response);
+                            }
+                        });
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
