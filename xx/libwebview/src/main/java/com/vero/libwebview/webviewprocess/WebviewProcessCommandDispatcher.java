@@ -65,13 +65,14 @@ public class WebviewProcessCommandDispatcher implements ServiceConnection {
     public void executeCommand(String commandName, String params, BaseWebView baseWebView) {
         if (mIWebviewProcessToMainProcessAidlInterface != null) {
             try {
-                // 调用服务端方法
+                // 调用服务端方法,并且传入一个新的aidl作为回调数据对象
                 mIWebviewProcessToMainProcessAidlInterface.handleWebCommand(commandName, params,
 
                         new ICallbackMainProcessToWebviewProcessAidlInterface.Stub() {
                             @SuppressLint("LongLogTag")
                             @Override
                             public void onResult(String callbackName, String response) throws RemoteException {
+                                // 主进程回调到webview进程，这里再回调给webview
                                 baseWebView.handleCallback(callbackName, response);
                             }
                         });
