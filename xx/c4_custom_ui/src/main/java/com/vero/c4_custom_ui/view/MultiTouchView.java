@@ -80,6 +80,7 @@ public class MultiTouchView extends View {
                 //根据id获取Index (id是不变的，index会变化，两者不一定相等)
                 int index = event.findPointerIndex(currentPointId);
 
+                // 偏移量 = 当前手指的位置 - 手指down的位置
                 offsetX = (event.getX(index) - downX) + lastOffsetX;
                 offsetY = (event.getY(index) - downY) + lastOffsetY;
                 invalidate();
@@ -97,10 +98,49 @@ public class MultiTouchView extends View {
                 int actionIndex = event.getActionIndex();
                 currentPointId = event.getPointerId(actionIndex);
 
+
+                downX = event.getX(actionIndex);
+                downY = event.getY(actionIndex);
+                lastOffsetX = offsetX;
+                lastOffsetY = offsetY;
+
                 break;
 
             case MotionEvent.ACTION_POINTER_UP:
                 //第n个手指触发
+
+                //获取抬起手指的后的index和id
+                int upIndex = event.getActionIndex();
+
+                int pointerId = event.getPointerId(upIndex);
+
+                // 下面逻辑：获取当前手指抬起后找到处理的手指nextUp
+                int nextUp = upIndex;
+
+                // 有可能第2个手指按下以后，抬起第1个手指
+                // 所以要判断相等
+                if (pointerId == currentPointId) {
+                    // 最后1根id抬起,判断是不是最后1个Index
+                    if (upIndex == event.getPointerCount() - 1) {
+                        // 最后一根抬起，则currentPointId为倒数第2根
+                        nextUp = event.getPointerCount() - 2;
+                    } else {
+                        // 抬起中间的手指，则currentPointId为下一根
+                        nextUp++;
+                    }
+
+                    // 找到后面处理的手指
+                    currentPointId = event.getPointerId(nextUp);
+
+
+                    downX = event.getX(nextUp);
+                    downY = event.getY(nextUp);
+                    lastOffsetX = offsetX;
+                    lastOffsetY = offsetY;
+
+                }
+
+
                 break;
         }
         return true;
