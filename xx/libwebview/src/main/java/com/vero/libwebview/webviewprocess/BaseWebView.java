@@ -45,6 +45,9 @@ public class BaseWebView extends WebView {
     }
 
     private void init() {
+        // 连接主进程
+        WebviewProcessCommandDispatcher.getInstance().initAidlConnection();
+
         WebViewDefaultSettings.getInstance().setSettings(this);
         // 将xiangxuewebview对象注入到window
         addJavascriptInterface(this, "xiangxuewebview");
@@ -63,11 +66,8 @@ public class BaseWebView extends WebView {
         if (!TextUtils.isEmpty(jsParams)) {
             final JsParam jsParamObj = new Gson().fromJson(jsParams, JsParam.class);
             if (jsParamObj != null) {
-                if ("showToast".equalsIgnoreCase(jsParamObj.name)) {
-                    String value = String.valueOf(new Gson().fromJson(jsParamObj.param, Map.class).get("message"));
-                    Toast.makeText(getContext(),value, Toast.LENGTH_LONG).show();
-
-                }
+                String json = new Gson().toJson(jsParamObj.param);
+                WebviewProcessCommandDispatcher.getInstance().executeCommand(jsParamObj.name, json);
             }
 
         }
