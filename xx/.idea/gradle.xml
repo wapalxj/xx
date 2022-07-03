@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/libwebview" />
             <option value="$PROJECT_DIR$/opensrc_glide" />
+            <option value="$PROJECT_DIR$/rv_recycler" />
             <option value="$PROJECT_DIR$/skinlib" />
             <option value="$PROJECT_DIR$/skinres" />
             <option value="$PROJECT_DIR$/webview" />
