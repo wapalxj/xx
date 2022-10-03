@@ -1,9 +1,11 @@
 package com.leo.rv_recycler;
 
 import android.os.Bundle;
+import android.os.Debug;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.TraceCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Debug.startMethodTracing("test_rv");
+        TraceCompat.beginSection("systrace_rv");
         setContentView(R.layout.activity_main);
 
         rv = findViewById(R.id.rv);
@@ -35,5 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         final CustomAdapter adapter = new CustomAdapter(this, list);
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+//        Debug.stopMethodTracing();
+        TraceCompat.endSection();
     }
 }
