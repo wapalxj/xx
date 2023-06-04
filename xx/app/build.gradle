@@ -1,6 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "com.vero.jiagu"//meta-inf下的文件名
+    id "com.mu.vnix"//方式1:meta-inf下的文件名
+}
+// 方式2：直接引用类名
+//apply plugin:NewPlugin
+
+
+jiagu {
+    username 'vero'
+    password 'vvvv'
+    jiaguTools""
 }
 
 android {
@@ -43,3 +54,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+//A.test()

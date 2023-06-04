@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'maven-publish' //自带的上传插件
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs',includes: ['*.jar'])
+    implementation gradleApi()
+    implementation "com.android.tools.build:gradle:7.1.2"
+}
+
+
+publishing {
+    publications{
+        //jiagu是自己取的
+        jiagu(MavenPublication){
+            from components.java //编译后的jar上传
+            groupId 'com.vero'
+            artifactId 'jiagu'
+            version '1.0'
+        }
+    }
+}

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="xx.app" target="11" />
+      <module name="xx.base" target="11" />
+      <module name="xx.c3_ui_3_skin" target="11" />
+      <module name="xx.c4_custom_ui" target="11" />
+      <module name="xx.common" target="11" />
+      <module name="xx.libwebview" target="11" />
+      <module name="xx.opensrc_glide" target="11" />
+      <module name="xx.rv_recycler" target="11" />
+      <module name="xx.skinlib" target="11" />
+      <module name="xx.skinres" target="11" />
+      <module name="xx.webview" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
